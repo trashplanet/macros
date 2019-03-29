@@ -14,29 +14,14 @@
 		<script language="JavaScript">
 			var calculate = function() {
 				var calories = $("#calories").val();
-				//calculate fat calories
-				var fat_calories = calories * .75
-				var fat_grams = (Math.round(fat_calories/9))
-				//protein calories
-				var protein_calories = calories * .20
-				var protein_grams = (Math.round(protein_calories/4))
-				//calculate carb calories
-				var carb_calories = calories * .05
-				var carb_grams = (Math.round(carb_calories/4))
+				var fat_grams = (Math.round((calories * .75)/9))
+				var protein_grams = (Math.round((calories * .20)/4))
+				var carb_grams = (Math.round((calories * .05)/4))
 				document.getElementById("macro-goals").innerText = "You should eat " + fat_grams + "g fat, " + protein_grams + "g protein, and " + carb_grams + "g carbs.";
 			}
 		</script>
 	</head>
 	<body>
-		<!--header-->
-		<!-- <section class="section" id="header">
-			<div class="inner">
-				<div class="row">
-					<div class="large-6 small-6 columns text-left">
-						<span class="header-title">laur.af</span>
-					</div>
-				</div>
-		</section> -->
 		<!--hero-->
 		<section class="section" id="hero">
 			<div class="inner">
