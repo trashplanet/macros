@@ -34,8 +34,16 @@
 				//conversions
 				var height_cm = insToCms((parseInt(feet) * 12) + parseInt(inches));
 				var weight_kg = lbsToKgs(weight, 2);
+				//calculate bmr based on sex
+				var male = document.getElementById("male");
+				var female = document.getElementById("female");
+				if (male.checked){
+    				var bmr_calories = Math.round(66 + (height_cm * 1.8) + (weight_kg * 13.7) - (age * 6.8));
+				} else if (female.checked) {
+    				var bmr_calories = Math.round(655 + (height_cm * 5) + (weight_kg * 9.6) - (age * 4.7));
+				}
 				// calculate bmr (female - need an if male or female)
-				var bmr_calories = Math.round(655 + (height_cm * 1.8) + (weight_kg * 9.6) - (age * 4.7));
+				// var bmr_calories = Math.round(655 + (height_cm * 1.8) + (weight_kg * 9.6) - (age * 4.7));
 				//activity levels (need an if for the different levels)	
 				document.getElementById("bmr_calories").innerText = `
 					Height: ${height_cm} cm
