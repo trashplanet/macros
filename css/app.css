@@ -88,7 +88,7 @@ section#hero .geometric-shape img {
 section#hero .hero-title {
 	/* margin-top: -1rem; */
 }
-/*bmi calculator*/
+/*calculator*/
 section#services {
 	min-height: 61.8vh
 }
@@ -97,6 +97,7 @@ section#services {
 	max-width: 30%;
 	margin-left: auto;
 	margin-right: auto;
+	padding-bottom: 2rem;
 }
 @media (max-width: 641px){
 	#bmi-calculator {
@@ -119,7 +120,7 @@ section#homepage-footer {
 	color: #212121;
 	background-color: #fefefe;
 	margin-top: -56px;
-	position: sticky;
+	/* position: sticky; */
 	box-shadow: none;
 }
 

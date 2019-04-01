@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>TDEE Calculator</title>
+		<meta name="description" content="Use this tool to calculate your ideal ratios of fat, protein, and carbs for the keto diet.">
+		<link rel="stylesheet" href="css/foundation.css">
+		<link rel="stylesheet" href="css/app.css">
+		<link rel='shortcut icon' href='' type='image/x-icon'/ >
+		<link href="https://fonts.googleapis.com/css?family=Cutive+Mono|VT323" rel="stylesheet">
+		<meta class="foundation-mq">
+		<script language="JavaScript">
+			//universal conversions
+			var insToCms = function(ins){
+				return parseInt(ins) * 2.54;
+			}
+			var cmsToIns = function(cms){
+				return parseInt(cms) / 2.54;
+			}
+			var lbsToKgs = function(lbs, d){
+				return (parseInt(lbs) / 2.205).toFixed(d);
+			}
+			var kgsToLbs = function(kgs, d){
+				return (parseInt(kgs) * 2.205).toFixed(d);
+			}
+			var calculate = function() {
+				//inputs
+				var weight = $("#weight").val();
+				var feet = $("#feet").val();
+				var inches = $("#inches").val();
+				var age = $("#age").val();
+				//conversions
+				var height_cm = insToCms((parseInt(feet) * 12) + parseInt(inches));
+				var weight_kg = lbsToKgs(weight, 2);
+				// calculate bmr (female - need an if male or female)
+				var bmr_calories = Math.round(655 + (height_cm * 1.8) + (weight_kg * 9.6) - (age * 4.7));
+				//activity levels (need an if for the different levels)	
+				document.getElementById("bmr_calories").innerText = `
+					Height: ${height_cm} cm
+					Weight: ${weight_kg} kg
+					BMR: ${bmr_calories} calories
+					Maintenance Calories:
+				`;			
+			}
+		</script>
+	</head>
+	<body>
+		<!--hero-->
+		<section class="section" id="hero">
+			<div class="inner">
+				<div class="row">
+					<div class="large-12 columns text-center">
+						<div class="hero-text">
+							<h1 class="hero-title">tdee calculator</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--calculator-->
+		<section class="section" id="services">
+			<div class="inner">
+				<div class="row">
+					<div class="large-12 columns text-center">
+						<div id="bmi-calculator" class="calculator">
+							<div class="row">
+								<div class="large-6 columns text-center">
+									<span>feet</span>
+									<input type="number" id="feet">
+								</div>
+								<div class="large-6 columns text-center">
+									<span>inches</span>
+									<input type="number" id="inches">
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-6 columns text-center">
+									<span>age</span>
+									<input type="number" id="age">
+								</div>
+								<div class="large-6 columns text-center">
+									<span>weight (lbs)</span>
+									<input type="number" id="weight">
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-12 columns text-center">
+									<span>sex</span>
+									<input type="radio" name="sex" value="male" id="male" checked><span>male</span>
+									<input type="radio" name="sex" value="female" id="female" checked><span>female</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-12 columns text-center">
+									<span>activity level</span>
+									<select name="Activity">
+										<option value="sedentary">Sedentary</option>
+										<option value="lightly">Lightly Active</option>
+										<option value="moderately">Moderately Active</option>
+										<option value="very">Very Active</option>
+										<option value="extra">Extra Active</option>
+									</select>
+											  
+								</div>
+							</div>
+							<div class="row">
+								<button class="button" onclick="calculate()">Calculate</button>
+							</div>
+							<div class="row">
+								<div id="bmr_calories"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--footer-->
+		<section class="section" id="homepage-footer">
+			<div class="inner">
+				<div class="row">
+					<div class="large-12 columns text-center">
+						<span>&copy; 2019 laur.af</span>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--scripts-->
+		<script src="js/vendor/jquery.js"></script>
+		<script src="js/vendor/what-input.js"></script>
+		<script src="js/vendor/foundation.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
