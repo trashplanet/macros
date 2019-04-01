@@ -47,15 +47,15 @@
 				var activity = document.getElementById("activity").value;
 				console.log(activity);
 				if (activity == 'sedentary'){
-					var calories = bmr_calories * 1.2
+					var calories = Math.round(bmr_calories * 1.2);
 				} else if (activity == 'lightly'){
-					var calories = bmr_calories * 1.375
+					var calories = Math.round(bmr_calories * 1.375);
 				} else if (activity == 'moderately'){
-					var calories = bmr_calories * 1.55
+					var calories = Math.round(bmr_calories * 1.55);
 				} else if (activity == 'very'){
-					var calories = bmr_calories * 1.725
+					var calories = Math.round(bmr_calories * 1.725);
 				} else if (activity == 'athlete'){
-					var calories = bmr_calories * 1.9
+					var calories = Math.round(bmr_calories * 1.9);
 				}
 				//activity levels (need an if for the different levels)	
 				document.getElementById("bmr_calories").innerText = `
