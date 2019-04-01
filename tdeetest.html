@@ -39,30 +39,24 @@
 				var male = document.getElementById("male");
 				var female = document.getElementById("female");
 				if (male.checked){
-    				var bmr_calories = Math.round(66 + (height_cm * 5) + (weight_kg * 13.7) - (age * 6.8));
-				} else if (female.checked) {
-    				var bmr_calories = Math.round(655 + (height_cm * 1.8) + (weight_kg * 9.6) - (age * 4.7));
-				}
-				//calculate maintenance calories based on activity level
-				var activity = document.getElementById("activity").value;
-				console.log(activity);
-				if (activity == 'sedentary'){
-					var calories = bmr_calories * 1.2
-				} else if (activity == 'lightly'){
-					var calories = bmr_calories * 1.375
-				} else if (activity == 'moderately'){
-					var calories = bmr_calories * 1.55
-				} else if (activity == 'very'){
-					var calories = bmr_calories * 1.725
-				} else if (activity == 'athlete'){
-					var calories = bmr_calories * 1.9
-				}
+                    console.log('height:' + height_cm);
+                    console.log('weight:' + weight_kg);
+                    console.log('age:' + age);
+                    var bmr_calories = Math.round(66 + (height_cm * 1.8) + (weight_kg * 13.7) - (age * 6.8));
+                    } else {
+                    console.log('height:' + height_cm);
+                    console.log('weight:' + weight_kg);
+                    console.log('age:' + age);
+                    var bmr_calories = Math.round(655 + (height_cm * 5) + (weight_kg * 9.6) - (age * 4.7));
+                    }
+				// calculate bmr (female - need an if male or female)
+				// var bmr_calories = Math.round(655 + (height_cm * 1.8) + (weight_kg * 9.6) - (age * 4.7));
 				//activity levels (need an if for the different levels)	
 				document.getElementById("bmr_calories").innerText = `
 					Height: ${height_cm} cm
 					Weight: ${weight_kg} kg
 					BMR: ${bmr_calories} calories
-					Maintenance: ${calories} calories
+					Maintenance Calories:
 				`;			
 			}
 		</script>
@@ -116,12 +110,12 @@
 							<div class="row">
 								<div class="large-12 columns text-center">
 									<span>activity level:</span>
-									<select id="activity">
-										<option value="sedentary" id="sedentary">Sedentary</option>
-										<option value="lightly" id="lightly">Lightly Active</option>
-										<option value="moderately" id="moderately">Moderately Active</option>
-										<option value="very" id="very">Very Active</option>
-										<option value="athlete" id="athlete">Athlete</option>
+									<select name="Activity">
+										<option value="sedentary">Sedentary</option>
+										<option value="lightly">Lightly Active</option>
+										<option value="moderately">Moderately Active</option>
+										<option value="very">Very Active</option>
+										<option value="extra">Extra Active</option>
 									</select>
 											  
 								</div>
