@@ -58,7 +58,7 @@
 					var calories = Math.round(bmr_calories * 1.9);
 				}
 				//activity levels (need an if for the different levels)	
-				document.getElementById("bmr_calories").innerText = `
+				document.getElementById("results").innerText = `
 					Height: ${height_cm} cm
 					Weight: ${weight_kg} kg
 					BMR: ${bmr_calories} calories
@@ -123,14 +123,13 @@
 										<option value="very" id="very">Very Active</option>
 										<option value="athlete" id="athlete">Athlete</option>
 									</select>
-											  
 								</div>
 							</div>
 							<div class="row">
 								<button class="button" onclick="calculate()">Calculate</button>
 							</div>
 							<div class="row">
-								<div id="bmr_calories"></div>
+								<div id="results"></div>
 							</div>
 						</div>
 					</div>
