@@ -114,6 +114,9 @@ section#services {
 	margin-right: auto;
 }
 
+input[type='radio']{
+	margin: 0 .618rem 1rem;
+}
 /*footer*/
 section#homepage-footer {
 	padding: 1rem;
