@@ -56,12 +56,16 @@
 				} else if (activity == 'athlete'){
 					var calories = Math.round(bmr_calories * 1.9);
 				}
+				//calculate macros based on calories
+				var fat_grams = (Math.round((calories * .75)/9))
+				var protein_grams = (Math.round((calories * .20)/4))
+				var carb_grams = (Math.round((calories * .05)/4))
 				//print results
 				document.getElementById("results").innerText = `
-					Height: ${height_cm} cm
-					Weight: ${weight_kg} kg
-					BMR: ${bmr_calories} calories
 					Maintenance: ${calories} calories
+					Fat: ${fat_grams}
+					Protein: ${protein_grams}
+					Carbs: ${carb_grams}
 				`;			
 			}
 		</script>
@@ -83,7 +87,7 @@
 		<section class="section" id="services">
 			<div class="inner">
 				<div class="row">
-					<div class="large-12 columns text-center">
+					<div class="large-6 columns text-center">
 						<div id="bmi-calculator" class="calculator">
 							<div class="row">
 								<div class="large-6 columns text-center">
@@ -94,39 +98,42 @@
 									<span>inches:</span>
 									<input type="number" id="inches">
 								</div>
-							</div>
-							<div class="row">
-								<div class="large-6 columns text-center">
-									<span>age:</span>
-									<input type="number" id="age">
 								</div>
-								<div class="large-6 columns text-center">
-									<span>weight (lbs):</span>
-									<input type="number" id="weight">
+								<div class="row">
+									<div class="large-6 columns text-center">
+										<span>age:</span>
+										<input type="number" id="age">
+									</div>
+									<div class="large-6 columns text-center">
+										<span>weight (lbs):</span>
+										<input type="number" id="weight">
+									</div>
+								</div>
+								<div class="row">
+									<div class="large-12 columns text-center">
+										<span>sex:</span>
+										<input type="radio" name="sex" value="male" id="male" checked><span>male</span>
+										<input type="radio" name="sex" value="female" id="female" checked><span>female</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="large-12 columns text-center">
+										<span>activity level:</span>
+										<select id="activity">
+											<option value="sedentary" id="sedentary">Sedentary</option>
+											<option value="lightly" id="lightly">Lightly Active</option>
+											<option value="moderately" id="moderately">Moderately Active</option>
+											<option value="very" id="very">Very Active</option>
+											<option value="athlete" id="athlete">Athlete</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<button class="button" onclick="calculate()">Calculate</button>
 								</div>
 							</div>
-							<div class="row">
-								<div class="large-12 columns text-center">
-									<span>sex:</span>
-									<input type="radio" name="sex" value="male" id="male" checked><span>male</span>
-									<input type="radio" name="sex" value="female" id="female" checked><span>female</span>
-								</div>
-							</div>
-							<div class="row">
-								<div class="large-12 columns text-center">
-									<span>activity level:</span>
-									<select id="activity">
-										<option value="sedentary" id="sedentary">Sedentary</option>
-										<option value="lightly" id="lightly">Lightly Active</option>
-										<option value="moderately" id="moderately">Moderately Active</option>
-										<option value="very" id="very">Very Active</option>
-										<option value="athlete" id="athlete">Athlete</option>
-									</select>
-								</div>
-							</div>
-							<div class="row">
-								<button class="button" onclick="calculate()">Calculate</button>
-							</div>
+						</div>
+						<div class="large-6 columns text-left">
 							<div class="row">
 								<div id="results"></div>
 							</div>
