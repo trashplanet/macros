@@ -12,12 +12,61 @@
 		<link href="https://fonts.googleapis.com/css?family=Cutive+Mono|VT323" rel="stylesheet">
 		<meta class="foundation-mq">
 		<script language="JavaScript">
+			//universal conversions
+			var insToCms = function(ins){
+				return parseInt(ins) * 2.54;
+			}
+			var cmsToIns = function(cms){
+				return parseInt(cms) / 2.54;
+			}
+			var lbsToKgs = function(lbs, d){
+				return (parseInt(lbs) / 2.205).toFixed(d);
+			}
+			var kgsToLbs = function(kgs, d){
+				return (parseInt(kgs) * 2.205).toFixed(d);
+			}
+			//calculator
 			var calculate = function() {
-				var calories = $("#calories").val();
+				//inputs
+				var weight = $("#weight").val();
+				var feet = $("#feet").val();
+				var inches = $("#inches").val();
+				var age = $("#age").val();
+				//conversions
+				var height_cm = insToCms((parseInt(feet) * 12) + parseInt(inches));
+				var weight_kg = lbsToKgs(weight, 2);
+				//calculate bmr based on sex
+				var male = document.getElementById("male");
+				var female = document.getElementById("female");
+				if (male.checked){
+    				var bmr_calories = Math.round(66 + (height_cm * 5) + (weight_kg * 13.7) - (age * 6.8));
+				} else if (female.checked) {
+    				var bmr_calories = Math.round(655 + (height_cm * 1.8) + (weight_kg * 9.6) - (age * 4.7));
+				}
+				//calculate maintenance calories based on activity level
+				var activity = document.getElementById("activity").value;
+				if (activity == 'sedentary'){
+					var calories = Math.round(bmr_calories * 1.2);
+				} else if (activity == 'lightly'){
+					var calories = Math.round(bmr_calories * 1.375);
+				} else if (activity == 'moderately'){
+					var calories = Math.round(bmr_calories * 1.55);
+				} else if (activity == 'very'){
+					var calories = Math.round(bmr_calories * 1.725);
+				} else if (activity == 'athlete'){
+					var calories = Math.round(bmr_calories * 1.9);
+				}
+				//calculate macros based on calories
 				var fat_grams = (Math.round((calories * .75)/9))
 				var protein_grams = (Math.round((calories * .20)/4))
 				var carb_grams = (Math.round((calories * .05)/4))
-				document.getElementById("macro-goals").innerText = "You should eat " + fat_grams + "g fat, " + protein_grams + "g protein, and " + carb_grams + "g carbs.";
+				//print results
+				document.getElementById("results").innerText = `
+					Maintenance: ${calories} cals
+					Fat: ${fat_grams}g
+					Protein: ${protein_grams}g
+					Carbs: ${carb_grams}g
+				`;			
 			}
 		</script>
 	</head>
@@ -28,7 +77,7 @@
 				<div class="row">
 					<div class="large-12 columns text-center">
 						<div class="hero-text">
-							<h1 class="hero-title">keto macro calculator</h1>
+							<h1 class="hero-title">Keto Macro Calculator</h1>
 						</div>
 					</div>
 				</div>
@@ -38,17 +87,55 @@
 		<section class="section" id="services">
 			<div class="inner">
 				<div class="row">
-					<div class="large-12 columns text-center">
+					<div class="large-6 small-12 columns text-center">
 						<div id="bmi-calculator" class="calculator">
-							<span>calorie goal</span>
-							<input type="number" id="calories">
 							<div class="row">
-								<button class="button" onclick="calculate()">Calculate</button>
+								<div class="large-6 columns text-center">
+									<span>feet:</span>
+									<input type="number" id="feet">
+								</div>
+								<div class="large-6 columns text-center">
+									<span>inches:</span>
+									<input type="number" id="inches">
+								</div>
+								</div>
+								<div class="row">
+									<div class="large-6 columns text-center">
+										<span>age:</span>
+										<input type="number" id="age">
+									</div>
+									<div class="large-6 columns text-center">
+										<span>weight (lbs):</span>
+										<input type="number" id="weight">
+									</div>
+								</div>
+								<div class="row">
+									<div class="large-12 columns text-center">
+										<span>sex:</span>
+										<input type="radio" name="sex" value="male" id="male" checked><span>male</span>
+										<input type="radio" name="sex" value="female" id="female" checked><span>female</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="large-12 columns text-center">
+										<span>activity level:</span>
+										<select id="activity">
+											<option value="sedentary" id="sedentary">Sedentary</option>
+											<option value="lightly" id="lightly">Lightly Active</option>
+											<option value="moderately" id="moderately">Moderately Active</option>
+											<option value="very" id="very">Very Active</option>
+											<option value="athlete" id="athlete">Athlete</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<button class="button" onclick="calculate()">Calculate</button>
+								</div>
 							</div>
+						</div>
+						<div class="large-6 small-12 columns text-left">
 							<div class="row">
-								<div id="macro-goals">				
-							</div>
-							</div>
+								<div id="results"></div>
 							</div>
 						</div>
 					</div>
