@@ -118,7 +118,13 @@ input[type='radio']{
 	margin: 0 .618rem 1rem;
 }
 #results {
-	padding: 0 2rem 2rem 2rem;
+	/* padding: 0 2rem 2rem 2rem; */
+}
+.results-area {
+	padding: 1rem;
+	margin-bottom: 2rem;
+	/* background-color: #F5F5F5; */
+	background-color:#E0E0E0; 
 }
 /*footer*/
 section#homepage-footer {
