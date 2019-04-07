@@ -95,7 +95,6 @@ section#services {
 
 #bmi-calculator {
 	max-width: 100%;
-	min-width: 400px;
 	margin-left: auto;
 	margin-right: auto;
 	padding-bottom: 2rem;
@@ -119,7 +118,7 @@ input[type='radio']{
 	margin: 0 .618rem 1rem;
 }
 #results {
-	padding: 2rem;
+	padding: 0 2rem 2rem 2rem;
 }
 /*footer*/
 section#homepage-footer {
